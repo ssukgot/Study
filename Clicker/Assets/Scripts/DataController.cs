@@ -17,6 +17,8 @@ public class DataController : MonoBehaviour {
 
     }
 
+    //GoldPerClick의 값을 현재 골드량에 따라 증가시키기
+
     public void SetGold(int newGold)
     {
 
