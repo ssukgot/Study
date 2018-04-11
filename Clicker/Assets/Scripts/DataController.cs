@@ -4,6 +4,24 @@ using UnityEngine;
 
 public class DataController : MonoBehaviour {
 
+    private static DataController instance;
+
+    public static DataController GetInstance()
+    {
+        if(instance == null)
+        {
+            instance = FindObjectOfType<DataController>();
+
+            if (instance == null)
+            {
+                GameObject container = new GameObject("DataController");
+
+                instance = container.AddComponent<DataController>();
+            }
+        }
+        return instance;
+    }
+
     private int m_gold = 0;
 
     private int m_goldPerClick = 0;
@@ -67,6 +85,13 @@ public class DataController : MonoBehaviour {
 
         PlayerPrefs.SetInt("GoldPerClick", m_goldPerClick);
 
+    }
+
+    public void AddGoldPerClick(int newGoldPerClick)
+    {
+        m_goldPerClick += newGoldPerClick;
+
+        SetGoldPerClick(m_goldPerClick);
     }
 
 }
