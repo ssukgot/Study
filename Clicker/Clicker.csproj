@@ -237,6 +237,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ClickButton.cs" />
     <Compile Include="Assets\Scripts\DataController.cs" />
+    <Compile Include="Assets\Scripts\ItemButton.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\UpgradeButton.cs" />
   </ItemGroup>
