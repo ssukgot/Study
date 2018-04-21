@@ -1,8 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemButton : MonoBehaviour {
+
+    public Text itemDisplayer;
 
     public string itemName;
 
@@ -27,7 +30,11 @@ public class ItemButton : MonoBehaviour {
 
     void Start()
     {
+        DataController.GetInstance().LoadItemButton(this);
+
         StartCoroutine("AddGoldLoop");
+
+        UpdateUI();
     }
 
     public void PurchaseItem()
@@ -39,6 +46,11 @@ public class ItemButton : MonoBehaviour {
             
             //level = level + 1
             level++;
+
+            UpdateItem();
+            UpdateUI();
+
+            DataController.GetInstance().SaveItemButton(this);
         }
     }
 
@@ -57,8 +69,12 @@ public class ItemButton : MonoBehaviour {
 
     public void UpdateItem()
     {
-        goldPerSec = startGoldPerSec * (int)Mathf.Pow(upgradePow, level);
+        goldPerSec = goldPerSec + startGoldPerSec * (int)Mathf.Pow(upgradePow, level);
         currentCost = startCurrentCost * (int)Mathf.Pow(costPow, level);
     }
 
+    public void UpdateUI()
+    {
+        itemDisplayer.text = itemDisplayer.name + "\nLevel : " + level + "\nCost : " + currentCost + "\nGoldPerSec : " + goldPerSec + "\nIsPurchased : " + isPurchased;
+    }
 }
